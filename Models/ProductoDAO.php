@@ -1,31 +1,4 @@
 <?php
-
-//////////////////////////////////////////////// Conexion 1
-
-// $usuario ="root"
-// $contraseña="Ruffito202104"
-// try {
-//     $mbd = new PDO('mysql:host=localhost;dbname=prueba', $usuario, $contraseña);
-//     foreach($mbd->query('SELECT * from usuario') as $fila) {
-//         print_r($fila);
-//     }
-//     $mbd = null;
-// } catch (PDOException $e) {
-//     print "¡Error!: " . $e->getMessage() . "<br/>";
-//     die();
-// }
-
-//////////////////////////////////////////////// Conexion 2
-
-// try{
-// 	$conexion = new PDO ("mysql:host=localhost:3308;dbname=prueba","root","Ruffito202104");
-// 	echo "Conexion realizada correctamente";
-// }catch(Exception $e){
-// 	echo "Err0r" .$e;
-// }
-
-//////////////////////////////////////////////// Conexion 3
-
 include '../Connections/conexion.php';
 
 
@@ -41,7 +14,7 @@ class ProductoDAO{
     }
 
     function TraerClases (){
-        $conexion = new Conexion ('localhost', 'root', '', 'MiguelBd');
+        $conexion = new Conexion ('localhost', 'root', '', 'php');
         try {
             $conn = $conexion->Conectar();
             $stmt = $conn->query('SELECT * FROM electrodomesticos');
@@ -53,11 +26,10 @@ class ProductoDAO{
         }
     }
     function eliminarClases ($id){
-        $conexion = new Conexion ('localhost', 'root', '', 'MiguelBd');
+        $conexion = new Conexion ('localhost', 'root', '', 'php');
         try {
             $conn = $conexion->Conectar();
 
-            // $query = "DELETE FROM electrodomesticos WHERE id =$id";
             $consulta = $conn->prepare("DELETE FROM electrodomesticos WHERE id = $id");
             $consulta->execute();
             return "Exito";
@@ -66,7 +38,7 @@ class ProductoDAO{
         }
     }
     function agregarClases($id,$nombre, $descripcion) {
-        $conexion = new Conexion('localhost', 'root', '', 'MiguelBd');
+        $conexion = new Conexion('localhost', 'root', '', 'php');
         try {
             $conn = $conexion->Conectar(); 
             $agregar = $conn->prepare("INSERT INTO electrodomesticos (`id`, `nombre`, `descripcion`) VALUES (?, ?, ?)");
@@ -81,7 +53,7 @@ class ProductoDAO{
     } 
 
     function TraerClase ($id){
-        $conexion = new Conexion ('localhost', 'root', '', 'MiguelBd');
+        $conexion = new Conexion ('localhost', 'root', '', 'php');
         try {
             $conn = $conexion->Conectar();
             $stmt = $conn->query("SELECT * FROM electrodomesticos WHERE id={$id}");
@@ -93,22 +65,8 @@ class ProductoDAO{
         }
     }
 
-    //funcion guardar y actualizar
-
-    // function guardarClase($nombre, $descripcion) {
-    //     $conexion = new Conexion('localhost', 'root', '', 'MiguelBd');
-    //     try {
-    //         $conn = $conexion->Conectar(); 
-    //         $agregar = $conn->prepare("INSERT INTO electrodomesticos (nombre, descripcion) VALUES ('$nombre', '$descripcion')");
-    //         $agregar->execute();
-    //         return "Agregado Exitosamente";
-    //     } catch(PDOException $e) {
-    //         return "Error al conectar a la base de datos: " . $e->getMessage();
-    //     }
-    // }
-
     function actualizarClase($id, $nombre, $descripcion) {
-        $conexion = new Conexion('localhost', 'root', '', 'MiguelBd');
+        $conexion = new Conexion('localhost', 'root', '', 'php');
         try {
             $conn = $conexion->Conectar(); 
             $agregar = $conn->prepare("UPDATE electrodomesticos SET nombre='$nombre', descripcion='$descripcion' WHERE id =$id");
@@ -122,7 +80,7 @@ class ProductoDAO{
 }
 
 
-// $conexion = new Conexion('localhost', 'root', '', 'MiguelBd');
+ $conexion = new Conexion('localhost', 'root', '', 'php');
 
 
 ?>
